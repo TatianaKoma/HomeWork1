@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="csvParser"
+          class="com.example.homework1.service.CsvParserImpl">
+    </bean>
+
+    <bean id="askQuestions"
+          class="com.example.homework1.service.AskQuestionsImpl">
+    </bean>
+
+    <bean id="checkAnswers"
+          class="com.example.homework1.service.CheckAnswersImpl">
+    </bean>
+
+    <bean id="exam" class="com.example.homework1.service.ExamImpl">
+        <constructor-arg name="csvParser" ref="csvParser"/>
+        <constructor-arg name="askQuestions" ref="askQuestions"/>
+        <constructor-arg name="checkAnswers" ref="checkAnswers"/>
+    </bean>
+</beans>
