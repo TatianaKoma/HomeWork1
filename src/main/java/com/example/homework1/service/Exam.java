@@ -1,5 +1,7 @@
 package com.example.homework1.service;
 
+import java.io.IOException;
+
 public interface Exam {
-    void examStudents(String questionsFileName);
+    void examStudents() throws IOException;
 }

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 public class AskQuestionsImpl implements AskQuestions {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -13,19 +14,19 @@ public class AskQuestionsImpl implements AskQuestions {
     public List<Integer> askExamQuestions(Map<String, List<String>> questionsWithAnswers) {
         List<Integer> userChoices = new ArrayList<>();
 
-        Iterator iterator = questionsWithAnswers.entrySet().iterator();
+        Iterator<Map.Entry<String, List<String>>> iterator = questionsWithAnswers.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry pair = (Map.Entry) iterator.next();
+            Map.Entry<String, List<String>> pair = iterator.next();
             System.out.println(pair.getKey());
             System.out.println("Answer options: ");
-            List<String> answersVariants = (List<String>) pair.getValue();
-            for (int i = 0; i < answersVariants.size(); i++) {
-                System.out.println((i + 1) + answersVariants.get(i));
-            }
+            List<String> answersVariants = pair.getValue();
+            IntStream.range(0, answersVariants.size()).mapToObj(i -> (i + 1) +
+                   answersVariants.get(i)).forEachOrdered(System.out::println);
             System.out.println("Your choice: ");
             String answer = SCANNER.nextLine();
             int studentAnswer = checkStudentChoice(answer);
             userChoices.add(studentAnswer);
+
             iterator.remove();
         }
         return userChoices;

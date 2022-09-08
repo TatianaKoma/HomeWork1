@@ -2,6 +2,7 @@ package com.example.homework1.service;
 
 import com.example.homework1.model.Student;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -19,8 +20,8 @@ public class ExamImpl implements Exam {
     }
 
     @Override
-    public void examStudents(String fileName) {
-        Map<String, List<String>> questionsWithAnswers = csvParser.getDataFromCsvFile(fileName);
+    public void examStudents() throws IOException {
+        Map<String, List<String>> questionsWithAnswers = csvParser.getDataFromCsvFile();
         System.out.println("Hello.Welcome to the exam!");
         String name = askQuestions.askInfoQuestions("Please enter your name:");
         String surname = askQuestions.askInfoQuestions("Please enter your surname:");
