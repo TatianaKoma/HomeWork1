@@ -38,6 +38,7 @@ public class AskQuestionsImpl implements AskQuestions {
         return SCANNER.nextLine();
     }
 
+    // I used 'while' here in case the user input incorrect data many times
     private int checkStudentChoice(String answer) {
         int studentAnswer;
         while (true) {
